@@ -2,6 +2,8 @@
 
 import { program } from 'commander'
 import genDiff from '../src/index.js'
+import { reader } from '../src/fileRader.js'
+import parser from '../src/parser.js'
 
 program
   .name('gendiff')
@@ -14,7 +16,10 @@ program
   .option('-f, --format [type]', 'output format', 'stylish')
   .action((filepath1, filepath2) => {
     const { format } = program.opts()
-    console.log(genDiff(filepath1, filepath2, format))
+    const parseFile1 = parser(reader(filepath1))
+    const parseFile2 = parser(reader(filepath2))
+
+    console.log(genDiff(parseFile1, parseFile2, format))
   })
 
 program.parse()
