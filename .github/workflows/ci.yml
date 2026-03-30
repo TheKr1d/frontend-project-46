@@ -40,7 +40,14 @@ jobs:
         with: 
           node-version: 20
       - run: npm ci
-      - uses: sonarsource/sonarqube-scan-action@v6  # ← v6!
+      - uses: sonarsource/sonarqube-scan-action@v6
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+        with:
+          args: >
+            -Dsonar.projectKey=TheKr1d_frontend-project-46
+            -Dsonar.organization=thekr1d
+            -Dsonar.sources=src,bin
+            -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
+            -Dsonar.tests=__tests__
