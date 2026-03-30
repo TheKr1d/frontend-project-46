@@ -43,6 +43,6 @@ jobs:
         with:
           args: >
             -Dsonar.projectKey=frontend-project-46
-            -Dsonar.organization=Vlad
+            -Dsonar.organization=thekr1d
             -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
             -Dsonar.sources=src
