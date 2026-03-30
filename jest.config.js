@@ -1,16 +1,18 @@
 /** @type {import('jest').Config} */
 export default {
   testEnvironment: 'node',
+  transform: {},
+  
   // Тестовые файлы
   testMatch: ['**/__tests__/**/*.test.js'],
-  // Генерация покрытия кода
-  collectCoverage: false,
-  coverageDirectory: 'coverage', // папка для отчётов
-  coverageReporters: ['json', 'lcov', 'text', 'clover'],
-
-  // Какие файлы включать в покрытие
+  
+  // Покрытие кода
+  collectCoverage: true,
+  coverageDirectory: 'coverage',
+  coverageReporters: ['lcov', 'text'],  // lcov для SonarQube
+  
   collectCoverageFrom: [
     'src/**/*.js',
-  ],
-  transform: {},
-}
+    '!node_modules/**'
+  ]
+};
