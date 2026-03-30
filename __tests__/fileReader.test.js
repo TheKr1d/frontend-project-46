@@ -25,3 +25,10 @@ test('reader (yml)', () => {
 
   expect(data).toEqual(expected)
 })
+
+test('reader (yaml)', () => {
+  const data = normalize(reader(getFixturePath('file1.yaml')))
+  const expected = normalize(readFixtureFile('file1Yml.txt'))
+
+  expect(data).toEqual(expected)
+})
