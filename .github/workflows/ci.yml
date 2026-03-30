@@ -24,3 +24,23 @@ jobs:
         with:
           name: coverage-report
           path: coverage/
+
+  sonar:
+    needs: ci
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: 
+          fetch-depth: 0
+      - uses: actions/download-artifact@v4
+        with:
+          name: coverage-report
+          path: coverage/
+      - uses: actions/setup-node@v4
+        with: 
+          node-version: 20
+      - run: npm ci
+      - uses: sonarsource/sonarqube-scan-action@v6  # ← v6!
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
