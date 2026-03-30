@@ -16,8 +16,8 @@ program
   .option('-f, --format [type]', 'output format', 'stylish')
   .action((filepath1, filepath2) => {
     const { format } = program.opts()
-    const parseFile1 = parser(reader(filepath1))
-    const parseFile2 = parser(reader(filepath2))
+    const parseFile1 = parser(reader(filepath1), filepath1)
+    const parseFile2 = parser(reader(filepath2), filepath2)
 
     console.log(genDiff(parseFile1, parseFile2, format))
   })

@@ -14,9 +14,33 @@ const readFixtureFile = filename => fs.readFileSync(getFixturePath(filename), 'u
 
 const normalize = text => text.replace(/\r\n/g, '\n').trim()
 
-test('genDiff - stylish', () => {
-  const obj1 = parser(readFixtureFile('file1.json'))
-  const obj2 = parser(readFixtureFile('file2.json'))
+const fileNameJson1 = 'file1.json'
+const fileNameJson2 = 'file2.json'
+
+test('genDiff - stylish (json)', () => {
+  const obj1 = parser(readFixtureFile(fileNameJson1), fileNameJson1)
+  const obj2 = parser(readFixtureFile(fileNameJson2), fileNameJson2)
+  const expected = normalize(readFixtureFile('stylish.txt'))
+  const actual = normalize(genDiff(obj1, obj2, 'stylish'))
+
+  expect(actual).toEqual(expected)
+})
+
+const fileNameYml1 = 'file1.yml'
+const fileNameYml2 = 'file2.yml'
+
+test('genDiff - stylish (yml)', () => {
+  const obj1 = parser(readFixtureFile(fileNameYml1), fileNameYml1)
+  const obj2 = parser(readFixtureFile(fileNameYml2), fileNameYml2)
+  const expected = normalize(readFixtureFile('stylish.txt'))
+  const actual = normalize(genDiff(obj1, obj2, 'stylish'))
+
+  expect(actual).toEqual(expected)
+})
+
+test('genDiff - stylish (yml and json)', () => {
+  const obj1 = parser(readFixtureFile(fileNameYml1), fileNameYml1)
+  const obj2 = parser(readFixtureFile(fileNameJson2), fileNameJson2)
   const expected = normalize(readFixtureFile('stylish.txt'))
   const actual = normalize(genDiff(obj1, obj2, 'stylish'))
 
