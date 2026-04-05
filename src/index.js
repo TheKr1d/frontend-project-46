@@ -1,9 +1,12 @@
 import stylish from './stylish.js'
+import buildDiffTree from './buildDiffTree.js'
 
-const genDiff = (file1, file2, format) => {
+const genDiff = (obj1, obj2, format) => {
+  const diffTree = buildDiffTree(obj1, obj2)
+
   switch (format) {
     case 'stylish':
-      return stylish(file1, file2)
+      return stylish(diffTree)
     default:
       throw new Error (`${format} - Текущего формата не предусмотрено.\nИспользуй доступные форматы - ['stylish']`)
   }
