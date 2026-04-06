@@ -14,9 +14,9 @@ Description
 This project implements a gendiff utility that finds differences between two nested files [JSON, YML] using an immutable functional approach without using classes. Only constants and pure functions are used. diff is created by comparing the parsed data (not the lines of the file). Changed fields are displayed side by side: first removed (-), then added (+). Unchanged keys do not have a sign.
 
 
-Example input:
-file1.json
+Example input
 ```
+file1.json
 {
   "common": {
     "setting1": "Value 1",
@@ -45,8 +45,9 @@ file1.json
 }
 ```
 
-file2.json
+
 ```
+file2.json
 {
   "common": {
     "follow": false,
