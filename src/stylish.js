@@ -12,7 +12,7 @@ const getPass = (depth, type) => {
 
 const buildNode = (element, depth) => {
   const { type, key, value, oldValue, newValue, children } = element
-  const prefix = getPass(depth, type === 'added' ? 'added' : type === 'removed' ? 'removed' : 'unchanged')
+  const prefix = getPass(depth, type === 'updated' ? 'unchanged' : type)
 
   switch (type) {
     case 'added':
@@ -39,18 +39,18 @@ const formatValue = (value, depth) => _.isObject(value)
 const formatObj = (objOrChildren, depth) => {
   if (!Array.isArray(objOrChildren)) {
     const lines = Object.entries(objOrChildren).map(([k, v]) =>
-      `  ${getPass(depth, 'unchanged').slice(2)}${k}: ${formatValue(v, depth + 2)}`,
+      `${getPass(depth, 'unchanged')}${k}: ${formatValue(v, depth + 2)}`,
     )
     const bracketIndent = ' '.repeat(depth * 2 - 2)
     return ['{', ...lines, `${bracketIndent}}`].join('\n')
   }
-  const lines = objOrChildren.map(child => buildNode(child, depth)).filter(Boolean)
+  const lines = objOrChildren.map(child => buildNode(child, depth))
   const bracketIndent = ' '.repeat((depth * 2) - 2)
   return ['{', ...lines, `${bracketIndent}}`].join('\n')
 }
 
 const stylish = (diffTree) => {
-  const lines = diffTree.map(node => buildNode(node, 1)).filter(Boolean)
+  const lines = diffTree.map(node => buildNode(node, 1))
   return `{\n${lines.join('\n')}\n}`
 }
 
