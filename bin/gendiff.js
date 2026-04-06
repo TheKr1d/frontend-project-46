@@ -29,7 +29,7 @@ program
   })
 
 if (process.argv.length <= 2) {
-  process.exit(0)
+  program.help()
 }
 
 program.parse()
