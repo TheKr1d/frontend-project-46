@@ -19,7 +19,7 @@ program
     const { format } = program.opts()
     if (!formats.includes(format)) {
       console.log(`Unknown format. Use option --help`)
-      return
+      process.exit(1)
     }
 
     const parseFile1 = parser(reader(filepath1), filepath1)
