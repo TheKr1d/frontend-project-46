@@ -2,8 +2,7 @@
 
 import { program } from 'commander'
 import genDiff from '../src/index.js'
-import { reader } from '../src/fileRader.js'
-import parser from '../src/parsers.js'
+import parser, { reader } from '../src/parsers.js'
 
 const formats = ['stylish', 'plain']
 

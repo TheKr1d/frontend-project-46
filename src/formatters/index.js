@@ -7,6 +7,8 @@ const formatter = (diffTree, format) => {
       return stylish(diffTree)
     case 'plain':
       return plain(diffTree)
+    case 'json':
+      return JSON.stringify(tree, null, ' ')
     default:
       throw new Error (`${format} - unknown format.`)
   }
