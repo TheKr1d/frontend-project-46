@@ -10,7 +10,6 @@ program
   .name('gendiff')
   .description('Compares two configuration files and shows a difference.')
   .version('0.0.1')
-  .exitOverride()
 
 program
   .argument('<filepath1>')
@@ -18,7 +17,7 @@ program
   .option('-f, --format <type>', `output format [${formats.join(', ')}]`, 'stylish')
   .action((filepath1, filepath2) => {
     const { format } = program.opts()
-    if (!formats.includes(format)) {
+    if (!formats.includes(format) && process.argv.length <= 2) {
       console.log(`Unknown format. Use option --help`)
       process.exit(1)
     }
