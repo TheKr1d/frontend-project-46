@@ -4,7 +4,7 @@ import { program } from 'commander'
 import genDiff from '../src/index.js'
 import parser, { reader } from '../src/parsers.js'
 
-const formats = ['stylish', 'plain']
+const formats = ['stylish', 'plain', 'json']
 
 program
   .name('gendiff')
