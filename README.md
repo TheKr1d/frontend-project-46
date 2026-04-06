@@ -10,26 +10,72 @@
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=TheKr1d_frontend-project-46&metric=coverage)](https://sonarcloud.io/summary/new_code?id=TheKr1d_frontend-project-46)
 
 Description
-This project implements a gendiff utility that finds differences between two flat [JSON, YML] files using an immutable, functional approach without classes. Only constants and pure functions are used. The diff is built by comparing parsed data (not file strings). Changed fields appear adjacent: removed (-) first, then added (+). Unchanged keys have no sign.
+This project implements a gendiff utility that finds differences between two nested files [JSON, YML] using an immutable functional approach without using classes. Only constants and pure functions are used. diff is created by comparing the parsed data (not the lines of the file). Changed fields are displayed side by side: first removed (-), then added (+). Unchanged keys do not have a sign.
 
 
 Example input:
 file1.json
 ```
 {
-  "host": "hexlet.io",
-  "timeout": 50,
-  "proxy": "123.234.53.22",
-  "follow": false
+  "common": {
+    "setting1": "Value 1",
+    "setting2": 200,
+    "setting3": true,
+    "setting6": {
+      "key": "value",
+      "doge": {
+        "wow": ""
+      }
+    }
+  },
+  "group1": {
+    "baz": "bas",
+    "foo": "bar",
+    "nest": {
+      "key": "value"
+    }
+  },
+  "group2": {
+    "abc": 12345,
+    "deep": {
+      "id": 45
+    }
+  }
 }
 ```
 
 file2.json
 ```
 {
-  "timeout": 20,
-  "verbose": true,
-  "host": "hexlet.io"
+  "common": {
+    "follow": false,
+    "setting1": "Value 1",
+    "setting3": null,
+    "setting4": "blah blah",
+    "setting5": {
+      "key5": "value5"
+    },
+    "setting6": {
+      "key": "value",
+      "ops": "vops",
+      "doge": {
+        "wow": "so much"
+      }
+    }
+  },
+  "group1": {
+    "foo": "bar",
+    "baz": "bars",
+    "nest": "str"
+  },
+  "group3": {
+    "deep": {
+      "id": {
+        "number": 45
+      }
+    },
+    "fee": 100500
+  }
 }
 ```
 ---
@@ -38,12 +84,48 @@ Example output:
 ```text
 gendiff file1.json file2.json
 {
-  - follow: false
-    host: hexlet.io
-  - proxy: 123.234.53.22
-  - timeout: 50
-  + timeout: 20
-  + verbose: true
+    common: {
+      + follow: false
+        setting1: Value 1
+      - setting2: 200
+      - setting3: true
+      + setting3: null
+      + setting4: blah blah
+      + setting5: {
+            key5: value5
+        }
+        setting6: {
+            doge: {
+              - wow: 
+              + wow: so much
+            }
+            key: value
+          + ops: vops
+        }
+    }
+    group1: {
+      - baz: bas
+      + baz: bars
+        foo: bar
+      - nest: {
+            key: value
+        }
+      + nest: str
+    }
+  - group2: {
+        abc: 12345
+        deep: {
+            id: 45
+        }
+    }
+  + group3: {
+        deep: {
+            id: {
+                number: 45
+            }
+        }
+        fee: 100500
+    }
 }
 ```
 
@@ -55,7 +137,7 @@ make link
 
 Demo:
 
-[![asciicast](https://asciinema.org/a/FdzJUKwz8hLxo1uy.svg)](https://asciinema.org/a/FdzJUKwz8hLxo1uy)
+[![asciicast](https://asciinema.org/a/xVc74cDAJEA0bl57.svg)](https://asciinema.org/a/xVc74cDAJEA0bl57)
 
 Tests:
 
