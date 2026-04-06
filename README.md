@@ -161,6 +161,12 @@ Demo:
 
 [![asciicast](https://asciinema.org/a/FZETo0rP6wUzCw8I.svg)](https://asciinema.org/a/FZETo0rP6wUzCw8I)
 
+Example output (json):
+
+Demo:
+
+[![asciicast](https://asciinema.org/a/w5VjEQbmZ8qLcHRG.svg)](https://asciinema.org/a/w5VjEQbmZ8qLcHRG)
+
 Installation
 ```bash
 make install
