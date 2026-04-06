@@ -28,8 +28,4 @@ program
     console.log(genDiff(parseFile1, parseFile2, format))
   })
 
-if (process.argv.length <= 2) {
-  program.help()
-}
-
 program.parse()
