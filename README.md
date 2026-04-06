@@ -10,6 +10,7 @@
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=TheKr1d_frontend-project-46&metric=coverage)](https://sonarcloud.io/summary/new_code?id=TheKr1d_frontend-project-46)
 
 Description
+
 This project implements a gendiff utility that finds differences between two nested files [JSON, YML] using an immutable functional approach without using classes. Only constants and pure functions are used. diff is created by comparing the parsed data (not the lines of the file). Changed fields are displayed side by side: first removed (-), then added (+). Unchanged keys do not have a sign.
 
 
