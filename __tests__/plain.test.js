@@ -20,8 +20,8 @@ const fileNameJson2 = 'file2.json'
 test('genDiff - stylish (json)', () => {
   const obj1 = parser(readFixtureFile(fileNameJson1), fileNameJson1)
   const obj2 = parser(readFixtureFile(fileNameJson2), fileNameJson2)
-  const expected = normalize(readFixtureFile('stylish.txt'))
-  const actual = normalize(genDiff(obj1, obj2, 'stylish'))
+  const expected = normalize(readFixtureFile('plain.txt'))
+  const actual = normalize(genDiff(obj1, obj2, 'plain'))
 
   expect(actual).toEqual(expected)
 })
@@ -32,8 +32,8 @@ const fileNameYml2 = 'file2.yml'
 test('genDiff - stylish (yml)', () => {
   const obj1 = parser(readFixtureFile(fileNameYml1), fileNameYml1)
   const obj2 = parser(readFixtureFile(fileNameYml2), fileNameYml2)
-  const expected = normalize(readFixtureFile('stylish.txt'))
-  const actual = normalize(genDiff(obj1, obj2, 'stylish'))
+  const expected = normalize(readFixtureFile('plain.txt'))
+  const actual = normalize(genDiff(obj1, obj2, 'plain'))
 
   expect(actual).toEqual(expected)
 })
@@ -41,8 +41,8 @@ test('genDiff - stylish (yml)', () => {
 test('genDiff - stylish (yml and json)', () => {
   const obj1 = parser(readFixtureFile(fileNameYml1), fileNameYml1)
   const obj2 = parser(readFixtureFile(fileNameJson2), fileNameJson2)
-  const expected = normalize(readFixtureFile('stylish.txt'))
-  const actual = normalize(genDiff(obj1, obj2, 'stylish'))
+  const expected = normalize(readFixtureFile('plain.txt'))
+  const actual = normalize(genDiff(obj1, obj2, 'plain'))
 
   expect(actual).toEqual(expected)
 })

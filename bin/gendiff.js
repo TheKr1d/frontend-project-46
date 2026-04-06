@@ -3,7 +3,9 @@
 import { program } from 'commander'
 import genDiff from '../src/index.js'
 import { reader } from '../src/fileRader.js'
-import parser from '../src/parser.js'
+import parser from '../src/parsers.js'
+
+const formats = ['stylish', 'plain']
 
 program
   .name('gendiff')
@@ -13,9 +15,14 @@ program
 program
   .argument('<filepath1>')
   .argument('<filepath2>')
-  .option('-f, --format [type]', 'output format', 'stylish')
+  .option('-f, --format <type>', `output format [${formats.join(', ')}]`, 'stylish')
   .action((filepath1, filepath2) => {
     const { format } = program.opts()
+    if (!formats.includes(format)) {
+      console.log(`Unknown format. Use option --help`)
+      return
+    }
+
     const parseFile1 = parser(reader(filepath1), filepath1)
     const parseFile2 = parser(reader(filepath2), filepath2)
 

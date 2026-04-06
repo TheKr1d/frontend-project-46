@@ -82,7 +82,7 @@ file2.json
 ```
 ---
 
-Example output:
+Example output (stylish):
 ```text
 gendiff file1.json file2.json
 {
@@ -130,6 +130,36 @@ gendiff file1.json file2.json
     }
 }
 ```
+Demo:
+
+[![asciicast](https://asciinema.org/a/xVc74cDAJEA0bl57.svg)](https://asciinema.org/a/xVc74cDAJEA0bl57)
+
+---
+
+---
+
+
+Example output (plain):
+
+```text
+gendiff filepath1.json filepath2.json -f plain
+
+Property 'common.follow' was added with value: false
+Property 'common.setting2' was removed
+Property 'common.setting3' was updated. From true to null
+Property 'common.setting4' was added with value: 'blah blah'
+Property 'common.setting5' was added with value: [complex value]
+Property 'common.setting6.doge.wow' was updated. From '' to 'so much'
+Property 'common.setting6.ops' was added with value: 'vops'
+Property 'group1.baz' was updated. From 'bas' to 'bars'
+Property 'group1.nest' was updated. From [complex value] to 'str'
+Property 'group2' was removed
+Property 'group3' was added with value: [complex value]
+```
+
+Demo:
+
+[![asciicast](https://asciinema.org/a/FZETo0rP6wUzCw8I.svg)](https://asciinema.org/a/FZETo0rP6wUzCw8I)
 
 Installation
 ```bash
@@ -137,12 +167,12 @@ make install
 make link
 ```
 
-Demo:
 
-[![asciicast](https://asciinema.org/a/xVc74cDAJEA0bl57.svg)](https://asciinema.org/a/xVc74cDAJEA0bl57)
+
+
 
 Tests:
 
-```bash
+```bash[-f format]
 make test
 ```
