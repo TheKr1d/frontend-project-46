@@ -21,19 +21,10 @@ program
       console.log(`Unknown format: ${format}. Use option --help`)
       process.exit(1)
     }
-    try {
-      const parseFile1 = parser(reader(filepath1), filepath1)
-      const parseFile2 = parser(reader(filepath2), filepath2)
-      console.log(genDiff(parseFile1, parseFile2, format))
-    }
-    catch (error) {
-      console.error('Ошибка парсинга:', error.message)
-      process.exit(1)
-    }
-  })
+    const parseFile1 = parser(reader(filepath1), filepath1)
+    const parseFile2 = parser(reader(filepath2), filepath2)
 
-if (process.argv.length < 3) {
-  process.exit(0)
-}
+    console.log(genDiff(parseFile1, parseFile2, format))
+  })
 
 program.parse()
