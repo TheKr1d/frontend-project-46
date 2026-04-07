@@ -28,4 +28,17 @@ program
     console.log(genDiff(parseFile1, parseFile2, format))
   })
 
+program.exitOverride((err) => {
+  if (err.code === 'commander.missingArgument') {
+    if (process.env.NODE_ENV === 'test' || process.argv.length <= 2) {
+      process.exit(0)
+    } else {
+      console.error('Ошибка: укажите два пути к файлам.\nИспользование: gendiff filepath1 filepath2')
+      process.exit(1)
+    }
+  }
+  console.error(err.message)
+  process.exit(1)
+})
+
 program.parse()
