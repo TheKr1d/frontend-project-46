@@ -15,30 +15,28 @@ program
   .argument('<filepath1>')
   .argument('<filepath2>')
   .option('-f, --format <type>', `output format [${formats.join(', ')}]`, 'stylish')
-  .action((filepath1, filepath2) => {
-    const { format } = program.opts()
-    if (!formats.includes(format) && process.argv.length <= 2) {
-      console.log(`Unknown format. Use option --help`)
+  .action((filepath1, filepath2, options) => {
+    const format = options.format
+    if (!formats.includes(format)) {
+      console.log(`Unknown format: ${format}. Use option --help`)
       process.exit(1)
     }
 
-    const parseFile1 = parser(reader(filepath1), filepath1)
-    const parseFile2 = parser(reader(filepath2), filepath2)
-
-    console.log(genDiff(parseFile1, parseFile2, format))
+    try {
+      const parseFile1 = parser(reader(filepath1), filepath1)
+      const parseFile2 = parser(reader(filepath2), filepath2)
+      console.log(genDiff(parseFile1, parseFile2, format))
+    }
+    catch (error) {
+      console.error('Ошибка парсинга файлов:', error.message)
+      process.exit(1)
+    }
   })
 
-program.exitOverride((err) => {
-  if (err.code === 'commander.missingArgument') {
-    if (process.env.NODE_ENV === 'test' || process.argv.length <= 2) {
-      process.exit(0)
-    } else {
-      console.error('Ошибка: укажите два пути к файлам.\nИспользование: gendiff filepath1 filepath2')
-      process.exit(1)
-    }
+if (process.argv.length < 3) {
+  if (process.argv.length === 2) {
+    program.help()
   }
-  console.error(err.message)
-  process.exit(1)
-})
+}
 
 program.parse()
