@@ -2,7 +2,6 @@
 
 import { Command } from 'commander'
 import genDiff from '../src/index.js'
-import parser, { reader } from '../src/parsers.js'
 
 const formats = ['stylish', 'plain', 'json']
 
@@ -18,11 +17,7 @@ program
   .argument('<filepath2>', 'path to second file')
   .option('-f, --format [type]', `output format [${formats.join(', ')}]`, 'stylish')
   .action((filepath1, filepath2, options) => {
-    const format = options.format
-    const parseFile1 = parser(reader(filepath1), filepath1)
-    const parseFile2 = parser(reader(filepath2), filepath2)
-
-    console.log(genDiff(parseFile1, parseFile2, format))
+    console.log(genDiff(filepath1, filepath2, options.format))
   })
 
 program.parse(process.argv)

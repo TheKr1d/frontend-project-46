@@ -20,6 +20,7 @@ const parser = (file_data, fileName) => {
 const reader = (fileName) => {
   try {
     const thisDirectory = process.cwd()
+
     const fullFilePath = path.resolve(thisDirectory, fileName)
     return fs.readFileSync(fullFilePath, 'utf-8')
   }
