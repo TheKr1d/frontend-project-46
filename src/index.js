@@ -9,6 +9,4 @@ const genDiff = (filepath1, filepath2, format = 'stylish') => {
   return formatter(diffTree, format)
 }
 
-console.log(genDiff('__fixtures__/file1.json', '__fixtures__/file2.json'))
-
 export default genDiff
