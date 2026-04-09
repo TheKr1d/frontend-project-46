@@ -50,7 +50,8 @@ DA:8,6
 DA:9,6
 LF:5
 LH:5
-BRF:0
+BRDA:5,0,0,0
+BRF:1
 BRH:0
 end_of_record
 TN:
