@@ -13,7 +13,7 @@ const parser = (file_data, fileName) => {
     case '.yaml':
       return yaml.load(file_data)
     default:
-      throw new Error(`Неизвестный формат ${format}`)
+      throw new Error(`Неизвестный формат ${format} - ${fileName}`)
   }
 }
 
